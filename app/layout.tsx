@@ -2,6 +2,7 @@ import './globals.css';
 import { TheHeader } from '@/components/TheHeader';
 import { TheFooter } from '@/components/TheFooter';
 import { Metadata } from 'next';
+import { Providers } from '@/components/Providers/Providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <TheHeader />
-        <main className="container">{children}</main>
-        <TheFooter />
+        <Providers>
+          <TheHeader />
+          <main className="container">{children}</main>
+          <TheFooter />
+        </Providers>
       </body>
     </html>
   );

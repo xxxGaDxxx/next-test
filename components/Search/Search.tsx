@@ -1,11 +1,12 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
-import PostsStore from '@/store/PostsStore';
-import { observer } from 'mobx-react-lite';
 
-const PostsSearch = () => {
-  const { getPostsBySearch } = PostsStore;
+type SearchProps = {
+  handleSubmitSearch: (search: string) => void;
+};
+
+const Search = ({ handleSubmitSearch }: SearchProps) => {
   const [search, setSearch] = useState('');
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,9 +14,9 @@ const PostsSearch = () => {
     setSearch(e.target.value);
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await getPostsBySearch(search);
+    handleSubmitSearch(search);
     setSearch('');
   };
 
@@ -27,4 +28,4 @@ const PostsSearch = () => {
   );
 };
 
-export default observer(PostsSearch);
+export default Search;
