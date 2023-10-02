@@ -1,8 +1,14 @@
 import { makeAutoObservable } from 'mobx';
 import { fetchAllPosts, fetchPostsBySearch } from '@/services/getPosts';
 
+export type PostType = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
 class PostsStore {
-  posts = [];
+  posts: PostType[] = [];
   loading = false;
 
   constructor() {

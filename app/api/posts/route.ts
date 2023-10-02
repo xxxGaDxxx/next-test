@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { PostType } from '@/store/PostsStore';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -9,7 +10,7 @@ export async function GET(req: Request) {
   );
 
   if (query) {
-    currentPosts = currentPosts.filter((post) =>
+    currentPosts = currentPosts.filter((post: PostType) =>
       post.title.toLowerCase().includes(query.toLowerCase()),
     );
   }
